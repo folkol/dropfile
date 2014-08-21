@@ -3,10 +3,11 @@ html, body {
   background-color: black;
 }
 #droparea {
-  height: 70%;
-  margin: 20px;
+  height: 50%;
+  margin: 5%;
   border: dashed gray 10px;
   color: gray;
+  border-radius: 55px;
 }
 #droparea.hover {
   height: 70%;
@@ -24,10 +25,13 @@ html, body {
 }
 a {
   color: white;
-  border: solid 1px white;
+  border: solid 2px white;
   background-color: #555;
   margin: 5px;
-  padding: 5px;
+  padding-left: 20px;
   text-decoration: none;
   line-height: 40px;
+  display: inline-block;
+  border-radius: 5px;
+  padding-right: 20px;
 }
