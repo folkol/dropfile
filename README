@@ -1,3 +1,0 @@
-*Java EE-based dropbox:ish hack*
-
-Usage: mvn clean package wildfly:deploy
