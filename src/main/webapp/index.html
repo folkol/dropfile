@@ -13,13 +13,16 @@ window.ondrop = function (e) {
 
   var file = e.dataTransfer.files[0], reader = new FileReader();
   reader.onload = function (event) {
-    document.body.innerHTML = "WUT";
+    document.body.innerHTML = "Uploading...";
     $.ajax({
        url: 'upload',
        type: 'POST',
        contentType: 'application/octet-stream',
        data: event.target.result,
-       processData: false
+       processData: false,
+       success: function(result) {
+         $("body").append($('<a href="upload/' + result + '">LINK</a>'));
+       }
     });
   };
   reader.readAsArrayBuffer(file);
