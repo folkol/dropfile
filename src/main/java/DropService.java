@@ -17,7 +17,9 @@ public class DropService
 
     @GET
     @Path("{filename}")
-    public Response hello(@PathParam("filename") String filename) throws Exception {
+    public Response hello(@PathParam("filename") String filename)
+            throws Exception
+    {
         java.nio.file.Path path = Paths.get("/tmp/dropservice/" + filename);
         String mimetype = new Tika().detect(path.toFile());
         return Response.ok(Files.newInputStream(path), mimetype).build();
@@ -25,9 +27,11 @@ public class DropService
 
     @POST
     @Path("{filename}")
-    public Response formPost(@PathParam("filename") String filename, InputStream data) throws Exception {
-        if(new File("/tmp/dropservice/" + filename).exists()) {
-            filename = UUID.randomUUID().toString() + "-" +  filename;
+    public Response formPost(@PathParam("filename") String filename, InputStream data)
+            throws Exception
+    {
+        if (new File("/tmp/dropservice/" + filename).exists()) {
+            filename = String.format("%s=%s", UUID.randomUUID().toString(), filename);
         }
         Files.copy(data, Paths.get("/tmp/dropservice/" + filename));
         return Response.ok(filename).build();

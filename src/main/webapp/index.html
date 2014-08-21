@@ -21,12 +21,15 @@
              data: event.target.result,
              processData: false,
              success: function(filename) {
-
-               $("#files").append($('<a href="files/' + filename + '">' + file.name + '</a>'));
+                 $('<a>',{
+                    text: file.name,
+                    title: file.name,
+                    href: 'files/' + filename,
+                }).appendTo('#files');
              }
           });
         };
-        reader.readAsArrayBuffer(file);      
+        reader.readAsArrayBuffer(file);
     }
     window.ondragover = function (e) {
       e.preventDefault();
