@@ -3,6 +3,7 @@
 <head>
     <meta charset=utf-8>
     <title>Dropskji</title>
+    <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
 </head>
 <body>
   <script>
@@ -12,9 +13,16 @@ window.ondrop = function (e) {
 
   var file = e.dataTransfer.files[0], reader = new FileReader();
   reader.onload = function (event) {
-    document.body.innerHTML = event.target.result;
+    document.body.innerHTML = "WUT";
+    $.ajax({
+       url: 'upload',
+       type: 'POST',
+       contentType: 'application/octet-stream',
+       data: event.target.result,
+       processData: false
+    });
   };
-  reader.readAsDataURL(file);
+  reader.readAsArrayBuffer(file);
 };
 </script>
 </body>
