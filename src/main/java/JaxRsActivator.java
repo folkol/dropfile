@@ -1,7 +1,7 @@
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-@ApplicationPath("/upload")
+@ApplicationPath("/files")
 public class JaxRsActivator extends Application
 {
 }

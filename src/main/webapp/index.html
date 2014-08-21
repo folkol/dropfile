@@ -7,26 +7,26 @@
 </head>
 <body>
   <script>
-window.ondragover = function (e) { e.preventDefault(); };
-window.ondrop = function (e) {
-  e.preventDefault();
+    window.ondragover = function (e) { e.preventDefault(); };
+    window.ondrop = function (e) {
+      e.preventDefault();
 
-  var file = e.dataTransfer.files[0], reader = new FileReader();
-  reader.onload = function (event) {
-    document.body.innerHTML = "Uploading...";
-    $.ajax({
-       url: 'upload',
-       type: 'POST',
-       contentType: 'application/octet-stream',
-       data: event.target.result,
-       processData: false,
-       success: function(result) {
-         $("body").append($('<a href="upload/' + result + '">LINK</a>'));
-       }
-    });
-  };
-  reader.readAsArrayBuffer(file);
-};
-</script>
+      var file = e.dataTransfer.files[0], reader = new FileReader();
+      reader.onload = function (event) {
+        document.body.innerHTML = "Uploading...";
+        $.ajax({
+           url: 'files/' + file.name,
+           type: 'POST',
+           contentType: 'application/octet-stream',
+           data: event.target.result,
+           processData: false,
+           success: function(result) {
+             $("body").append($('<a href="files/' + result + '">LINK</a>'));
+           }
+        });
+      };
+      reader.readAsArrayBuffer(file);
+    };
+  </script>
 </body>
 </html>

@@ -1,11 +1,12 @@
+import org.apache.tika.Tika;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.UUID;
 
 @Path("")
 public class DropService
@@ -13,25 +14,26 @@ public class DropService
 
     @GET
     @Path("{filename}")
-    @Produces(MediaType.APPLICATION_OCTET_STREAM)
     public Response hello(@PathParam("filename") String filename) throws Exception {
-        InputStream file = Files.newInputStream(Paths.get("/tmp/dropservice/" + filename));
-        return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM)
-                .header("Content-Disposition", "attachment; filename=\"" + filename + "\"") //optional
-                .build();
+        java.nio.file.Path path = Paths.get("/tmp/dropservice/" + filename);
+        String mimetype = new Tika().detect(path.toFile());
+        return Response.ok(Files.newInputStream(path), mimetype).build();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_OCTET_STREAM)
     public Response formPost(InputStream data) throws Exception {
-        File file = File.createTempFile("dropped", "", new File("/tmp/dropservice/"));
-        try (FileOutputStream fos = new FileOutputStream(file)) {
-            int c;
-            while ((c = data.read()) != -1) {
-                fos.write(c);
-            }
-            return Response.ok(file.getName()).build();
-        }
+        String filename = UUID.randomUUID().toString();
+        Files.copy(data, Paths.get("/tmp/dropservice/" + filename));
+        return Response.ok(filename).build();
+    }
+
+    @POST
+    @Path("{filename}")
+    @Consumes(MediaType.APPLICATION_OCTET_STREAM)
+    public Response formPost(@PathParam("filename") String filename, InputStream data) throws Exception {
+        Files.copy(data, Paths.get("/tmp/dropservice/" + filename));
+        return Response.ok(filename).build();
     }
 
 }
