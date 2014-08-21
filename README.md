@@ -1,3 +1,3 @@
-## Folkol share
+## Folkol share hack
 
 Usage: mvn clean package wildfly:deploy
