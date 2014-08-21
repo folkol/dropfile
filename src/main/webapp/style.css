@@ -1,0 +1,33 @@
+html, body {
+  height: 100%;
+  background-color: black;
+}
+#droparea {
+  height: 70%;
+  margin: 20px;
+  border: dashed gray 10px;
+  color: gray;
+}
+#droparea.hover {
+  height: 70%;
+  margin: 20px;
+  border: dashed white 10px;
+  color: white;
+}
+#droparea p {
+  text-align: center;
+  font-size: 50px;
+}
+#files {
+  text-align: center;
+  margin-top: 50px;
+}
+a {
+  color: white;
+  border: solid 1px white;
+  background-color: #555;
+  margin: 5px;
+  padding: 5px;
+  text-decoration: none;
+  line-height: 40px;
+}

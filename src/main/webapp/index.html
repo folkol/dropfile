@@ -4,40 +4,13 @@
     <meta charset=utf-8>
     <title>Dropskji</title>
     <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
-    <style>
-    html, body {
-      height: 100%;
-      background-color: black;
-    }
-    #droparea {
-      height: 70%;
-      margin: 20px;
-      border: dashed gray 10px;
-      color: gray;
-    }
-    #droparea.hover {
-      height: 70%;
-      margin: 20px;
-      border: dashed white 10px;
-      color: white;
-    }
-    #droparea p {
-      text-align: center;
-      font-size: 50px;
-    }
-    a {
-      color: white;
-    }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
   <div id="droparea">
     <p>DROP FILES!</p>
   </div>
-  <div>
-    <ul id="files">
-    </ul>
-  </div>
+  <div id="files"></div>
   <script>
     var uploadFile = function(file) {
         var reader = new FileReader();
@@ -48,8 +21,8 @@
              data: event.target.result,
              processData: false,
              success: function(filename) {
-               var li = $("<li>").append($('<a href="files/' + filename + '">File: ' + file.name + '</a>'));
-               $("#files").append(li);
+
+               $("#files").append($('<a href="files/' + filename + '">' + file.name + '</a>'));
              }
           });
         };
