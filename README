@@ -1,0 +1,2 @@
+curl -XPOST -H"Content-Type: application/octet-stream" --data-binary @owl.jpg http://localhost:8080/drop/upload
+open /tmp/attachment
