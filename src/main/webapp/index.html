@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset=utf-8>
-    <title>Dropskji</title>
-    <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset=utf-8>
+  <title>Folkol share hack</title>
+  <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
   <div id="droparea">
@@ -15,37 +15,33 @@
     var uploadFile = function(file) {
         var reader = new FileReader();
         reader.onload = function (event) {
-          $.ajax({
-             url: 'files/' + file.name,
-             type: 'POST',
-             data: event.target.result,
-             processData: false,
-             success: function(filename) {
-                 $('<a>',{
-                    text: file.name,
-                    title: file.name,
-                    href: 'files/' + filename,
-                }).appendTo('#files');
-             }
-          });
+            $.ajax({
+                url: 'files/' + file.name,
+                type: 'POST',
+                data: event.target.result,
+                processData: false,
+                success: function(filename) {
+                    $('<a>',{
+                        text: file.name,
+                        title: file.name,
+                        href: 'files/' + filename,
+                    }).appendTo('#files');
+                }
+            });
         };
         reader.readAsArrayBuffer(file);
     }
     window.ondragover = function (e) {
-      e.preventDefault();
-      $("#droparea").addClass("hover");
-    };
-    window.ondragleave = function (e) {
-      $("#droparea").removeClass("hover");
+        e.preventDefault();
     };
     window.ondrop = function (e) {
-      e.preventDefault();
-      $("#droparea").removeClass("hover");
+        e.preventDefault();
+        $("#droparea").removeClass("hover");
 
-      var files = e.dataTransfer.files;
-      for(i = 0; i < files.length; i++) {
-        uploadFile(files[i]);
-      }
+        var files = e.dataTransfer.files;
+        for(i = 0; i < files.length; i++) {
+            uploadFile(files[i]);
+        }
     };
   </script>
 </body>

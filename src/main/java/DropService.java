@@ -21,8 +21,7 @@ public class DropService
     @GET
     public Response download(@PathParam("filename") String filename) throws Exception {
         Path path = Paths.get(STORAGE_DIR + filename);
-        String mimetype = new Tika().detect(path.toFile());
-        return Response.ok(Files.newInputStream(path), mimetype).build();
+        return Response.ok(Files.newInputStream(path), new Tika().detect(path.toFile())).build();
     }
 
     @POST
