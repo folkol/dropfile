@@ -27,7 +27,7 @@ public class DropService
     @Path("{filename}")
     public Response formPost(@PathParam("filename") String filename, InputStream data) throws Exception {
         if(new File("/tmp/dropservice/" + filename).exists()) {
-            filename = UUID.randomUUID().toString() + filename;
+            filename = UUID.randomUUID().toString() + "-" +  filename;
         }
         Files.copy(data, Paths.get("/tmp/dropservice/" + filename));
         return Response.ok(filename).build();
