@@ -17,7 +17,6 @@
         $.ajax({
            url: 'files/' + file.name,
            type: 'POST',
-           contentType: 'application/octet-stream',
            data: event.target.result,
            processData: false,
            success: function(result) {
