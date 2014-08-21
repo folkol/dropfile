@@ -33,6 +33,11 @@
     }
     window.ondragover = function (e) {
         e.preventDefault();
+        $("#droparea").addClass("hover");
+    };
+    window.ondragleave = function (e) {
+        e.preventDefault();
+        $("#droparea").removeClass("hover");
     };
     window.ondrop = function (e) {
         e.preventDefault();
