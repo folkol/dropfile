@@ -21,16 +21,16 @@
                 data: event.target.result,
                 processData: false,
                 success: function(filename) {
-                    $('<a>',{
+                    $('<a>', {
                         text: file.name,
                         title: file.name,
-                        href: 'files/' + filename,
+                        href: 'files/' + filename
                     }).appendTo('#files');
                 }
             });
         };
         reader.readAsArrayBuffer(file);
-    }
+    };
     window.ondragover = function (e) {
         e.preventDefault();
         $("#droparea").addClass("hover");
@@ -44,9 +44,7 @@
         $("#droparea").removeClass("hover");
 
         var files = e.dataTransfer.files;
-        for(i = 0; i < files.length; i++) {
-            uploadFile(files[i]);
-        }
+        Array.prototype.slice.call(files).forEach(uploadFile);
     };
   </script>
 </body>
