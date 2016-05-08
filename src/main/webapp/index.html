@@ -19,7 +19,7 @@
         reader.onload = function (event) {
             $.ajax({
                 url: 'files/' + file.name,
-                type: 'POST',
+                type: 'PUT',
                 data: event.target.result,
                 processData: false,
                 success: function(filename) {
