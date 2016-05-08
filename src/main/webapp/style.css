@@ -2,6 +2,18 @@ html, body {
   height: 100%;
   background-color: black;
 }
+.header {
+  padding: 10px;
+  font-size: x-large;
+  align-self: flex-start;
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+.header a {
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
 #droparea {
   height: 60%;
   margin: 5%;
