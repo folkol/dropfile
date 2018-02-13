@@ -1,4 +1,4 @@
-FROM manicmonkey/raspbian-wildfly
+FROM manicmonkey/raspbian-wildfly:9.0.2.Final
 
 RUN mkdir /tmp/dropservice
 
